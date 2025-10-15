@@ -1,135 +1,72 @@
-🚗 Vehicle Detection with YOLOv5
+# 🚀 Real-Time Traffic Object Detection using YOLOv8
 
-This project implements a vehicle detection system using YOLOv5 (You Only Look Once, version 5) for real-time object detection in traffic scenes.
-The model is trained to detect multiple vehicle types and license plates with high accuracy.
+This project focuses on **real-time traffic object detection** using the **YOLOv8** model.  
+The model detects and classifies multiple traffic-related objects such as **cars, number plates, two-wheelers, buses, trucks, autos**, and even **blurred number plates** — showcasing the power of modern **computer vision** for **intelligent transportation systems**.
 
-🧠 Project Overview
+---
 
-This notebook demonstrates a full computer vision pipeline for object detection using YOLOv5, including:
+## 🔍 Project Highlights
 
-⚙️ Environment setup and dependency installation
+- **Dataset:** Custom traffic dataset with **7 object classes**  
+- **Model:** YOLOv8m (fine-tuned for **30 epochs**)  
+- **Performance:**  
+  - **mAP@50:** 0.822  
+  - **mAP@50-95:** 0.583  
+- **Inference:** Real-time detection on validation images with bounding boxes and class labels  
 
-🧹 Data preprocessing and validation
+---
 
-🏋️ Model training on a custom dataset
+## 📊 Key Results
 
-🚘 Detection of vehicles and license plates in images and videos
+| Object Class           | mAP@50 |
+|-------------------------|--------|
+| 🚗 Car                 | **0.950** |
+| 🔢 Number Plate        | **0.855** |
+| 🏍️ Two-Wheeler         | **0.919** |
+| 🚌 Bus                 | **0.840** |
+| 🚚 Truck               | **0.773** |
+| 🚖 Auto / Three-Wheeler| — |
+| 🌀 Blurred Plate       | — |
 
-📂 Dataset
+*(Add the last two values when available.)*
 
-The dataset includes 7 object classes for traffic analysis:
+---
 
-Class	Description
-0	Car
-1	Number Plate
-2	Blur Number Plate
-3	Two Wheeler
-4	Auto
-5	Bus
-6	Truck
+## 🛠️ Tech Stack
 
-Dataset structure
+- **Language:** Python  
+- **Framework:** PyTorch  
+- **Model:** Ultralytics YOLOv8  
+- **Image Processing:** OpenCV  
+- **Training Environment:** Kaggle GPU (accelerated training)
 
-Split	Images	Instances
-Train	738	—
-Validation	185	—
-Total	923 images	1,980 object instances
+---
 
-All images are labeled and annotated in YOLO format.
+## ⚙️ Workflow Overview
 
-⚙️ Model Training
+1. **Dataset Preparation**
+   - Custom dataset with labeled bounding boxes.
+   - Preprocessed and split into training and validation sets.
 
-Configuration
+2. **Model Training**
+   - Fine-tuned YOLOv8m on custom dataset for 30 epochs.
+   - Used hyperparameter tuning for optimal learning rate and augmentation.
 
-Parameter	Value
-Model	yolov5s (small)
-Input size	640 × 640 pixels
-Epochs	30
-Batch size	16
-Optimizer	SGD
-Learning rate	0.01
-📈 Training Progress
-Epoch	mAP50	Notes
-0	0.049	Initial epoch
-5	0.447	Rapid improvement
-8	0.557	Consistent accuracy gain
+3. **Evaluation**
+   - Calculated mAP@50 and mAP@50-95.
+   - Visualized detection results on validation images.
 
-Metrics Tracked
+4. **Inference**
+   - Performed real-time detection on sample images and video streams.
 
-🟩 Box Loss: Bounding-box regression error
+---
 
-🟦 Object Loss: Objectness confidence loss
+## 📈 Next Steps
 
-🟨 Class Loss: Classification error
+- ✅ **Deploy** the model for real-time **video inference**
+- ⚙️ **Optimize** for **edge devices**
+- 🔧 Apply **model pruning** and **quantization** for faster inference
+- 🌐 Integrate into a **traffic monitoring system dashboard**
 
-🎯 Precision (P): True positives / all predictions
+---
 
-🧩 Recall (R): True positives / all actual objects
-
-🏆 mAP50: Mean Average Precision @ IoU 0.5
-
-🧰 Technical Setup
-
-Dependencies
-
-Python 3.11
-
-PyTorch 2.6.0 + CUDA 12.4
-
-Ultralytics YOLOv5
-
-OpenCV
-
-NumPy / Pandas
-
-Hardware
-
-GPU Acceleration via CUDA (for faster training and inference)
-
-🌟 Key Features
-
-✅ Real-time object detection using YOLOv5
-✅ Custom 7-class dataset for comprehensive vehicle detection
-✅ Automatic data validation to detect missing or corrupt labels
-✅ GPU acceleration for efficient model training
-✅ Live training progress visualization
-✅ Configurable hyperparameters for flexible experimentation
-
-🚀 Usage
-
-Setup environment
-
-git clone https://github.com/ultralytics/yolov5.git
-cd yolov5
-pip install -r requirements.txt
-
-
-Prepare dataset
-
-Organize images and labels into train/ and val/ directories
-
-Update data.yaml with paths and class names
-
-Train the model
-
-python train.py --img 640 --batch 16 --epochs 30 --data data.yaml --weights yolov5s.pt --device 0
-
-
-Run inference
-
-python detect.py --source path_to_images_or_video --weights runs/train/exp/weights/best.pt
-
-📊 Applications
-
-This vehicle detection system can be used for:
-
-🚦 Traffic monitoring & analysis
-🚘 Automated vehicle counting
-📸 License plate recognition
-🏙️ Smart city infrastructure
-👮 Traffic law enforcement
-
-📈 Performance Summary
-
-The trained YOLOv5 model shows strong detection capabilities across all seven classes, achieving steadily increasing mAP50 through training epochs.
-Its lightweight yolov5s architecture provides a balance of speed and accuracy, ideal for real-time vehicle detection tasks.
